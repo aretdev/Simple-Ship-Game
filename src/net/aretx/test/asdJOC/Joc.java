@@ -43,10 +43,10 @@ public void setTurn(int trn){ // si el torn es 1 torn= 1 , si es do = 2 |||
 }
 public void setShip(int ply){
 	if (ply == 1) {
-	System.out.println("Introdueix la coord x del teu vaixell");
+	System.out.println("1-Introdueix la coord x del teu vaixell : ");
 	int xp1 = sc.nextInt();
 	
-	System.out.println("Introdueix la coord y del teu vaixell");
+	System.out.println("1-Introdueix la coord y del teu vaixell : ");
 	int yp1 = sc.nextInt();
 	getShip(xp1,yp1,1);
 	
@@ -59,10 +59,10 @@ public void setShip(int ply){
 	}
 	checkTorn();
 	}else{
-		System.out.println("Introdueix la coord x del teu vaixell");
+		System.out.println("2-Introdueix la coord x del teu vaixell : ");
 		int xp1 = sc.nextInt();
 		
-		System.out.println("Introdueix la coord y del teu vaixell");
+		System.out.println("2-Introdueix la coord y del teu vaixell : ");
 		int yp1 = sc.nextInt();
 		getShip(xp1,yp1,2);
 		torn = 3;
@@ -73,7 +73,7 @@ public void setShip(int ply){
 
 public void getShip(int x1 , int y2,int plye){
 
-	for (int i = 0; i < (map.length); i++) {
+	for(int i = 0; i < (map.length); i++) {
 		if(i == x1){
 			x = x1;
 		}
@@ -82,11 +82,17 @@ public void getShip(int x1 , int y2,int plye){
 			}		
 		
 	}
-		if (x != -1 && y != -1) {
-			map[x][y] = ships[plye]; //ADD AL MAPA EL BAIXELL ES A DIR EL 1 o 2 depen
-			hits[x][y] = ships[plye];// YA VAIG FICANT A LA SUPOSTA POSICIO EN EL QUE ESTA EL VAIXELL PER A DISPARAR
+		
+		if(x != -1 && y != -1 && plye == 1 ) {
+			map[x][y] = 1; //ADD AL MAPA EL BAIXELL ES A DIR EL 1 o 2 depen
+			hits[x][y] = 1;// YA VAIG FICANT A LA SUPOSTA POSICIO EN EL QUE ESTA EL VAIXELL PER A DISPARAR
+		}else{
+			map[x][y] = 2; //ADD AL MAPA EL BAIXELL ES A DIR EL 1 o 2 depen
+			hits[x][y] = 2;// YA VAIG FICANT A LA SUPOSTA POSICIO EN EL QUE ESTA EL VAIXELL PER A DISPARAR
 		}
-}
+	
+	
+	}
 
 
 public void checkTorn(){
@@ -104,7 +110,7 @@ public void checkTorn(){
 
 public void ShipHit(int plyr){
 	
-	System.out.println("Canó >> coordenada X : ");
+	System.out.println("Canó >> coordenada X :");
 	int hitx = sc.nextInt();
 	
 	System.out.println("Canó >> coordenada Y :");
@@ -112,39 +118,22 @@ public void ShipHit(int plyr){
 	
 	if (map[hitx][hity] == plyr) {
 		System.out.println("Te ha disparat a tu mateixa !!!");
-		
-		if (plyr == 1) {
-			System.out.println("Torn de jugador 2");
+		if(plyr == 1){
+			torn = 4;
 			ShipHit(2);
-			
-			if(map[hitx][hity] == plyr){	
-				hitShip(hitx,hity);}
-			
-		}else{
-			
-			System.out.println("Torn de de jugador 1");
-			ShipHit(1);
-			
-			if(map[hitx][hity] == plyr){
-				hitShip(hitx,hity);}
-			
 		}
+	}else{
+		hitShip(hitx,hity);
 	}
 	
 }
 
 
 public void hitShip(int x1, int y2){
-	System.out.println(hits[x1][y2]);
-if(hits[x1][y2] == map[x][y]){
-	System.out.println("Vaixell esfonsat!\n");
-	System.out.println("Joc >> Presiona 1 per una altra partida , presiona 0 per finalitzar");
-		if(sc.nextInt() == 1){
-			run();
-		}
+if(hits[x1][y2] == 1 || hits[x1][y2] == 2){
+	System.out.println("Vaixell esfonsat!");
 		}else{
-			System.out.println("Aigua...");
-			
+			System.out.println("Aigua");//@TODO añadir codic de reinici!
 		}
 	}
 
