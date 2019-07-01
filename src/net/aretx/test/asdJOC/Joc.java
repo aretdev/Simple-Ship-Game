@@ -120,10 +120,10 @@ public void checkTorn(){
 
 public void ShipHit(int plyr){
 	
-	System.out.println("Canó >> coordenada X : ");
+	System.out.println("Canï¿½ >> coordenada X : ");
 	int hitx = sc.nextInt();
 	
-	System.out.println("Canó >> coordenada Y : ");
+	System.out.println("Canï¿½ >> coordenada Y : ");
 	int hity = sc.nextInt();
 	
 	if (map[hitx][hity] == plyr) {
@@ -153,7 +153,7 @@ if(hits[x1][y2] == 1 || hits[x1][y2] == 2){
 	reloadGame();
 		}else{
 			blankSpace(50);
-			System.out.println("Aigua!");//@TODO añadir codic de reinici!
+			System.out.println("Aigua!");//@TODO anyaadir codic de reinici!
 			sleepTime(500);
 			if (plyer == 1) {
 				blankSpace(50);
